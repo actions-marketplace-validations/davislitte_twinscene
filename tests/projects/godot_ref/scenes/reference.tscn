@@ -1,0 +1,71 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpj8v"]
+albedo_color = Color(0.8, 0.2, 0.1, 1)
+metallic = 0.3
+roughness = 0.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_t5ptn"]
+material = SubResource("StandardMaterial3D_bpj8v")
+size = Vector3(2, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_di658"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nd1v7"]
+radius = 0.75
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_857mk"]
+radius = 0.4
+height = 1.8
+
+[node name="Reference" type="Node3D" unique_id=352739055]
+
+[node name="Box" type="MeshInstance3D" parent="." unique_id=629817099]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 1, 2, 3)
+mesh = SubResource("BoxMesh_t5ptn")
+metadata/twinscene_id = 1001
+
+[node name="Child" type="Node3D" parent="Box" unique_id=1471718060]
+transform = Transform3D(0.8434932, -0.8368241, 1.0104722, 0.49240386, 1.705737, -0.52094454, -0.21461014, 0.62464905, 2.7762496, 0, 1, 0)
+
+[node name="Main Camera" type="Camera3D" parent="." unique_id=1683828158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 10)
+fov = 60.0
+near = 0.3
+far = 1000.0
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=683689459]
+transform = Transform3D(0.8660254, 0.38302222, -0.32139382, 0, 0.64278764, 0.76604444, 0.5, -0.66341394, 0.5566704, 0, 0, 0)
+light_color = Color(1, 0.95, 0.85, 1)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Lamp" type="OmniLight3D" parent="." unique_id=1769664112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 0)
+omni_range = 8.0
+
+[node name="Spot" type="SpotLight3D" parent="." unique_id=778231397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2)
+spot_range = 12.0
+spot_angle = 30.0
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=874085712]
+
+[node name="Shape" type="CollisionShape3D" parent="Floor" unique_id=391096146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_di658")
+
+[node name="Ball" type="RigidBody3D" parent="." unique_id=1446155793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+mass = 2.5
+
+[node name="Shape" type="CollisionShape3D" parent="Ball" unique_id=2064829231]
+shape = SubResource("SphereShape3D_nd1v7")
+
+[node name="Pill" type="CollisionShape3D" parent="Ball" unique_id=1925043529]
+shape = SubResource("CapsuleShape3D_857mk")
+
+[node name="Hidden Thing" type="Node3D" parent="." unique_id=268323644]
+visible = false
+metadata/note = "Godot-only data that must survive a sync"

@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/crate.tscn" id="1_tpkvb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hhd1"]
+albedo_color = Color(0.2, 0.5, 0.9, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b66cd"]
+material = SubResource("StandardMaterial3D_8hhd1")
+
+[node name="Stack" type="Node3D" unique_id=920712339]
+
+[node name="Bottom" type="MeshInstance3D" parent="." unique_id=455052676 instance=ExtResource("1_tpkvb")]
+mesh = SubResource("BoxMesh_b66cd")
+
+[node name="Top" type="MeshInstance3D" parent="." unique_id=896136921 instance=ExtResource("1_tpkvb")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 1, 0)
+mesh = SubResource("BoxMesh_b66cd")

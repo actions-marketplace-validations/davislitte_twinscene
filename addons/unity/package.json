@@ -1,0 +1,14 @@
+{
+  "name": "com.twinscene.unity",
+  "version": "0.1.0",
+  "displayName": "TwinScene",
+  "description": "Keeps this Unity project in sync with a Godot copy of the same game.",
+  "unity": "6000.0",
+  "license": "MIT",
+  "author": {
+    "name": "The TwinScene contributors"
+  },
+  "documentationUrl": "https://github.com/davislitte/twinscene/blob/main/docs/editor-addons.md",
+  "changelogUrl": "https://github.com/davislitte/twinscene/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/davislitte/twinscene/blob/main/LICENSE"
+}

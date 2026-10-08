@@ -1,0 +1,53 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/crate.tscn" id="1_0cjdn"]
+[ext_resource type="Material" path="res://scenes/green.tres" id="2_takt5"]
+[ext_resource type="PackedScene" path="res://scenes/stack.tscn" id="3_qinn6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hhd1"]
+albedo_color = Color(0.2, 0.5, 0.9, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b66cd"]
+material = SubResource("StandardMaterial3D_8hhd1")
+
+[node name="Prefabs" type="Node3D" unique_id=1949026391]
+
+[node name="Main Camera" type="Camera3D" parent="." unique_id=405441571]
+transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0, 4, 12)
+
+[node name="Crate" parent="." unique_id=455052676 instance=ExtResource("1_0cjdn")]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 2, 0.5, 1)
+mesh = SubResource("BoxMesh_b66cd")
+
+[node name="Lid" parent="Crate" index="0" unique_id=731183165]
+transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, 0, 0.6, 0)
+visible = false
+light_color = Color(1, 0.8, 0.3, 1)
+omni_range = 3.0
+
+[node name="Crate Big" parent="." unique_id=296285502 instance=ExtResource("1_0cjdn")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3, 1, 0)
+mesh = SubResource("BoxMesh_b66cd")
+
+[node name="Lid" parent="Crate Big" index="0" unique_id=731183165]
+transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, 0, 0.8, 0)
+light_color = Color(1, 0.1, 0.1, 1)
+light_energy = 3.0
+omni_range = 3.0
+
+[node name="Shelf" type="Node3D" parent="." unique_id=445103192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Crate On Shelf" type="MeshInstance3D" parent="Shelf" unique_id=2022182086 instance=ExtResource("1_0cjdn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_b66cd")
+surface_material_override/0 = ExtResource("2_takt5")
+
+[node name="Sticker" type="Node3D" parent="Shelf/Crate On Shelf" unique_id=1069897224]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
+
+[node name="Stack" type="Node3D" parent="." unique_id=920712339 instance=ExtResource("3_qinn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2)
+
+[editable path="Crate"]
+[editable path="Crate Big"]

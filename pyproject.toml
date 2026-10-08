@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "twinscene"
+dynamic = ["version"]
+description = "Keep one game in Unity and Godot at the same time"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = []
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Topic :: Games/Entertainment",
+    "Topic :: Software Development :: Version Control",
+]
+
+[project.urls]
+Homepage = "https://github.com/davislitte/twinscene"
+Issues = "https://github.com/davislitte/twinscene/issues"
+Changelog = "https://github.com/davislitte/twinscene/blob/main/CHANGELOG.md"
+
+[tool.setuptools.dynamic]
+version = {attr = "twinscene.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["twinscene*"]
+
+[project.scripts]
+twinscene = "twinscene.cli:main"
+
+[tool.setuptools.package-data]
+twinscene = ["unity/*.yaml", "unity/*.unity", "unity/*.mat"]

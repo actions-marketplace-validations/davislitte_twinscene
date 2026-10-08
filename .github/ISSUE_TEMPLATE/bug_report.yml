@@ -1,0 +1,37 @@
+name: Something synced wrong
+description: An object, value or file came out wrong on the other side, or a sync failed.
+labels: [bug]
+body:
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: TwinScene (`twinscene --version`), Unity, Godot
+      placeholder: twinscene 0.1.0, Unity 6000.3.25f1, Godot 4.7.2
+    validations:
+      required: true
+  - type: dropdown
+    id: direction
+    attributes:
+      label: Direction
+      options: [Unity to Godot, Godot to Unity, Both, Not about a direction]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected
+      description: Which object or setting, and how it looks on each side. Screenshots help.
+    validations:
+      required: true
+  - type: textarea
+    id: report
+    attributes:
+      label: Sync report
+      description: The output of `twinscene status` (or the sync pull request's description).
+      render: markdown
+  - type: textarea
+    id: files
+    attributes:
+      label: A scene that shows it
+      description: If you can, attach the smallest scene or prefab that shows the problem (Unity scenes as text).

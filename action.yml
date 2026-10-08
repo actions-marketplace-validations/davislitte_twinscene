@@ -1,0 +1,66 @@
+name: TwinScene sync
+description: Copy Unity changes to Godot and Godot changes to Unity, as a pull request.
+author: The TwinScene contributors
+branding:
+  icon: copy
+  color: blue
+
+inputs:
+  prefer:
+    description: Settle conflicts in favour of "unity" or "godot". Empty (the default) reports them instead.
+    default: ""
+  branch:
+    description: Branch the sync pull request comes from.
+    default: twinscene/sync
+  token:
+    description: Token used to push the branch and open the pull request.
+    default: ${{ github.token }}
+  python-version:
+    description: Python used to run TwinScene.
+    default: "3.12"
+
+outputs:
+  changed:
+    description: '"true" if the sync changed any files.'
+    value: ${{ steps.pr.outputs.changed }}
+  conflicts:
+    description: '"true" if some changes conflict and were left for a person to settle.'
+    value: ${{ steps.sync.outputs.conflicts }}
+  pull-request:
+    description: URL of the sync pull request, if one was opened or updated.
+    value: ${{ steps.pr.outputs.url }}
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install TwinScene
+      shell: bash
+      run: python -m pip install --quiet "$GITHUB_ACTION_PATH"
+
+    - name: Sync
+      id: sync
+      shell: bash
+      env:
+        PREFER: ${{ inputs.prefer }}
+      run: |
+        set +e
+        twinscene sync ${PREFER:+--prefer "$PREFER"} --report "$RUNNER_TEMP/twinscene-report.md"
+        code=$?
+        set -e
+        if [ "$code" -ne 0 ] && [ "$code" -ne 3 ]; then exit "$code"; fi
+        echo "conflicts=$([ "$code" -eq 3 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+    - name: Open or update the pull request
+      id: pr
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        BRANCH: ${{ inputs.branch }}
+        BASE: ${{ github.ref_name }}
+        REPORT: ${{ runner.temp }}/twinscene-report.md
+        CONFLICTS: ${{ steps.sync.outputs.conflicts }}
+      run: bash "$GITHUB_ACTION_PATH/action/open_pr.sh"

@@ -1,0 +1,16 @@
+# Local engine binaries and scratch (never committed)
+.tools/
+__pycache__/
+*.pyc
+.pytest_cache/
+build/
+dist/
+*.egg-info/
+
+# Engine caches inside test projects
+tests/projects/**/.godot/
+tests/projects/**/Library/
+tests/projects/**/Temp/
+tests/projects/**/Logs/
+tests/projects/**/UserSettings/
+tests/projects/**/obj/

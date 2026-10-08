@@ -1,0 +1,16 @@
+name: Something should sync
+description: A kind of object, setting or workflow TwinScene doesn't handle yet.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What should sync
+      description: For example "Unity's CharacterController" or "Godot's GridMap". How do you use it?
+    validations:
+      required: true
+  - type: textarea
+    id: mapping
+    attributes:
+      label: How it could map
+      description: Optional. What the closest thing is in the other engine.

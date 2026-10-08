@@ -1,0 +1,10 @@
+{
+    "name": "TwinScene.Runtime",
+    "rootNamespace": "TwinScene",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "autoReferenced": true,
+    "noEngineReferences": false
+}

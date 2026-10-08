@@ -1,0 +1,14 @@
+{
+    "name": "TwinScene.Editor",
+    "rootNamespace": "TwinScene.Editor",
+    "references": [
+        "TwinScene.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "autoReferenced": true,
+    "noEngineReferences": false
+}
